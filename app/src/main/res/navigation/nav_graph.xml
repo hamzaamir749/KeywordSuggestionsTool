@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/first_fragment">
+
+    <fragment
+        android:id="@+id/first_fragment"
+        android:name="com.akstudios.KSTWV.ui.fragments.SearchFragment"
+        android:label="Search"
+        tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/second_fragment"
+        android:name="com.akstudios.KSTWV.ui.fragments.CompetitionFragment"
+        android:label="Competition"
+        tools:layout="@layout/fragment_competition">
+
+    </fragment>
+    <fragment
+        android:id="@+id/third_fragment"
+        android:name="com.akstudios.KSTWV.ui.fragments.BulkFragment"
+        android:label="Bulk"
+        tools:layout="@layout/fragment_bulk" />
+    <fragment
+        android:id="@+id/fourth_fragment"
+        android:name="com.akstudios.KSTWV.ui.fragments.MenuFragment"
+        android:label="Menu"
+        tools:layout="@layout/fragment_menu" />
+</navigation>

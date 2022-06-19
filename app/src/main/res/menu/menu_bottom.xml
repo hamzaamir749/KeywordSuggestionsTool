@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/bottomNav_search"
+        android:icon="@drawable/ic_search"
+        android:title="@string/search" />
+    <item
+        android:id="@+id/bottomNav_competition"
+        android:icon="@drawable/ic_competition"
+        android:title="@string/competition" />
+    <item
+        android:id="@+id/bottomNav_bulk"
+        android:icon="@drawable/ic_bulk"
+        android:title="@string/bulk" />
+
+    <item
+        android:id="@+id/bottomNav_menu"
+        android:icon="@drawable/ic_menu"
+        android:title="@string/menu" />
+
+</menu>

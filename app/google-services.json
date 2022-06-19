@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "700875278257",
+    "project_id": "a-supertoolz",
+    "storage_bucket": "a-supertoolz.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:700875278257:android:be588a6528f73435a89f90",
+        "android_client_info": {
+          "package_name": "com.akstudios.KSTWV"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "700875278257-dp3t5n4vccqbller2dr889480tdp7umj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDG-93RGvboeaU7M54kzRCX2c4XtIhUhdk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "700875278257-dp3t5n4vccqbller2dr889480tdp7umj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-3534006675523302~4347669198"
+    }
+  ],
+  "configuration_version": "1"
+}
