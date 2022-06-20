@@ -14,11 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.akstudios.KSTWV.adapters.BulkKeywordAdapter
 import com.akstudios.KSTWV.databinding.FragmentBulkBinding
 import com.akstudios.KSTWV.ui.activities.MainActivity
-import com.akstudios.KSTWV.utils.FlowState
-import com.akstudios.KSTWV.utils.LoadingDialog
-import com.akstudios.KSTWV.utils.RecyclerviewCallbacks
-import com.akstudios.KSTWV.utils.showToast
+import com.akstudios.KSTWV.utils.*
 import com.akstudios.KSTWV.viewmodels.KeywordBulkViewModel
+import com.applovin.sdk.AppLovinSdk
 import com.seo.app.seostudio.model.KeywordItem
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -112,7 +110,16 @@ class BulkFragment : Fragment() {
             adapter = adapterBulkKeyword
         }
         handleApiResponse()
+        loadApplovinSdk()
     }
+
+    private fun loadApplovinSdk() {
+        AppLovinSdk.getInstance(requireContext()).mediationProvider = "max"
+        AppLovinSdk.getInstance(requireContext()).initializeSdk {
+         requireContext().createBannerAd(binding.bannerAdLayout)
+        }
+    }
+
 
     private fun handleApiResponse() {
         lifecycleScope.launchWhenCreated {

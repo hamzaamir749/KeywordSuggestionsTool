@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import com.akstudios.KSTWV.databinding.FragmentMenuBinding
 import com.akstudios.KSTWV.ui.activities.MainActivity
 import com.akstudios.KSTWV.utils.*
+import com.applovin.sdk.AppLovinSdk
 
 // need website,need youtube link
 class MenuFragment : Fragment() {
@@ -68,5 +69,13 @@ class MenuFragment : Fragment() {
 
     private fun initViews() {
 
+        loadApplovinSdk()
+    }
+
+    private fun loadApplovinSdk() {
+        AppLovinSdk.getInstance(requireContext()).mediationProvider = "max"
+        AppLovinSdk.getInstance(requireContext()).initializeSdk {
+            requireContext().createBannerAd(binding.bannerAdLayout)
+        }
     }
 }

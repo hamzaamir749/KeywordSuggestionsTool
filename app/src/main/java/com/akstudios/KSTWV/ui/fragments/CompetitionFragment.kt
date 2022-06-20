@@ -18,7 +18,9 @@ import androidx.fragment.app.Fragment
 import com.akstudios.KSTWV.databinding.FragmentCompetitionBinding
 import com.akstudios.KSTWV.ui.activities.MainActivity
 import com.akstudios.KSTWV.utils.GlobalVariables
+import com.akstudios.KSTWV.utils.createBannerAd
 import com.akstudios.KSTWV.utils.openBrowser
+import com.applovin.sdk.AppLovinSdk
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -111,7 +113,14 @@ class CompetitionFragment : Fragment() {
             Toast.makeText(requireContext(), "Downloading File", Toast.LENGTH_LONG).show()
         }
         binding.activityMainWebview.loadUrl(GlobalVariables.COMPETITION_WEBSITE) //Replace The Link Here
+        loadApplovinSdk()
+    }
 
+    private fun loadApplovinSdk() {
+        AppLovinSdk.getInstance(requireContext()).mediationProvider = "max"
+        AppLovinSdk.getInstance(requireContext()).initializeSdk {
+            requireContext().createBannerAd(binding.bannerAdLayout)
+        }
     }
 
     inner class HelloWebViewClient : WebViewClient() {

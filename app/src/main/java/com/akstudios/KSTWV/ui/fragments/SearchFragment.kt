@@ -17,6 +17,8 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.akstudios.KSTWV.databinding.FragmentSearchBinding
 import com.akstudios.KSTWV.utils.GlobalVariables
+import com.akstudios.KSTWV.utils.createBannerAd
+import com.applovin.sdk.AppLovinSdk
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -101,7 +103,14 @@ class SearchFragment : Fragment() {
             Toast.makeText(requireContext(), "Downloading File", Toast.LENGTH_LONG).show()
         }
         binding.activityMainWebview.loadUrl(GlobalVariables.SEARCH_WEBSITE) //Replace The Link Here
+        loadApplovinSdk()
+    }
 
+    private fun loadApplovinSdk() {
+        AppLovinSdk.getInstance(requireContext()).mediationProvider = "max"
+        AppLovinSdk.getInstance(requireContext()).initializeSdk {
+            requireContext().createBannerAd(binding.bannerAdLayout)
+        }
     }
 
     private class HelloWebViewClient : WebViewClient() {

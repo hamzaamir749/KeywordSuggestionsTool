@@ -5,8 +5,12 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.util.Log
+import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.Toast
 import com.akstudios.KSTWV.R
+import com.applovin.adview.AppLovinAdView
+import com.applovin.sdk.AppLovinAdSize
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.inappmessaging.FirebaseInAppMessaging
 import org.json.JSONObject
@@ -132,7 +136,7 @@ fun competitionValue(value: Double): String {
 }
 
 
-fun Context.showToast(message:String){
+fun Context.showToast(message: String) {
     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 }
 
@@ -151,4 +155,15 @@ fun inAppMessagingInitialization(
         ) //To Show InAppMessage in MainActivity. Need to add this event name in Web console campaign
         FirebaseInAppMessaging.getInstance().triggerEvent(eventName)
     }
+}
+
+
+fun Context.createBannerAd(frameLayout: FrameLayout) {
+    val adBanner = AppLovinAdView(AppLovinAdSize.BANNER, this)
+    val width = ViewGroup.LayoutParams.MATCH_PARENT
+    val heightPx = resources.getDimensionPixelSize(R.dimen.banner_height)
+    adBanner.layoutParams = FrameLayout.LayoutParams(width, heightPx)
+    adBanner.setBackgroundColor(getColor(R.color.backgroundFragment))
+    frameLayout.addView(adBanner)
+    adBanner.loadNextAd()
 }

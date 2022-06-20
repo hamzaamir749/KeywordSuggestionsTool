@@ -59,7 +59,6 @@ class MainActivity : AppCompatActivity() {
     private fun loadApplovinSdk() {
         AppLovinSdk.getInstance(this).mediationProvider = "max"
         AppLovinSdk.getInstance(this).initializeSdk {
-            createBannerAd()
             createInterstitialAd()
             createRewardedAd()
         }
@@ -207,15 +206,7 @@ class MainActivity : AppCompatActivity() {
         interstitialAd.loadAd()
     }
 
-    private fun createBannerAd() {
-        val adBanner = AppLovinAdView(AppLovinAdSize.BANNER, this)
-        val width = ViewGroup.LayoutParams.MATCH_PARENT
-        val heightPx = resources.getDimensionPixelSize(R.dimen.banner_height)
-        adBanner.layoutParams = FrameLayout.LayoutParams(width, heightPx)
-        adBanner.setBackgroundColor(getColor(R.color.backgroundFragment))
-        binding.bannerAdLayout.addView(adBanner)
-        adBanner.loadNextAd()
-    }
+
 
 
     fun loadAd(isInterstitial: Boolean = false, action: ((Boolean) -> Unit)? = null) {
