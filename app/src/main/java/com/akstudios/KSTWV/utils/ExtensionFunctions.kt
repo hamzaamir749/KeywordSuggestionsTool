@@ -5,12 +5,14 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.util.Log
-import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.Toast
 import com.akstudios.KSTWV.R
-import com.applovin.adview.AppLovinAdView
-import com.applovin.sdk.AppLovinAdSize
+import com.applovin.mediation.MaxAd
+import com.applovin.mediation.MaxError
+import com.applovin.mediation.nativeAds.MaxNativeAdListener
+import com.applovin.mediation.nativeAds.MaxNativeAdLoader
+import com.applovin.mediation.nativeAds.MaxNativeAdView
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.inappmessaging.FirebaseInAppMessaging
 import org.json.JSONObject
@@ -159,11 +161,28 @@ fun inAppMessagingInitialization(
 
 
 fun Context.createBannerAd(frameLayout: FrameLayout) {
-    val adBanner = AppLovinAdView(AppLovinAdSize.BANNER, this)
-    val width = ViewGroup.LayoutParams.MATCH_PARENT
-    val heightPx = resources.getDimensionPixelSize(R.dimen.banner_height)
-    adBanner.layoutParams = FrameLayout.LayoutParams(width, heightPx)
-    adBanner.setBackgroundColor(getColor(R.color.backgroundFragment))
-    frameLayout.addView(adBanner)
-    adBanner.loadNextAd()
+    var nativeAd: MaxAd? = null
+    val nativeAdLoader: MaxNativeAdLoader =
+        MaxNativeAdLoader(this.resources.getString(R.string.banner_ad_unit_id), this)
+    nativeAdLoader.setNativeAdListener(object : MaxNativeAdListener() {
+
+        override fun onNativeAdLoaded(nativeAdView: MaxNativeAdView?, ad: MaxAd) {
+            if (nativeAd != null) {
+                nativeAdLoader.destroy(nativeAd)
+            }
+
+            nativeAd = ad
+
+            frameLayout.removeAllViews()
+            frameLayout.addView(nativeAdView)
+        }
+
+        override fun onNativeAdLoadFailed(adUnitId: String, error: MaxError) {
+            nativeAdLoader.loadAd()
+        }
+
+        override fun onNativeAdClicked(ad: MaxAd) {
+        }
+    })
+    nativeAdLoader.loadAd()
 }

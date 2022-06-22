@@ -102,7 +102,11 @@ class SearchFragment : Fragment() {
             dm.enqueue(request)
             Toast.makeText(requireContext(), "Downloading File", Toast.LENGTH_LONG).show()
         }
-        binding.activityMainWebview.loadUrl(GlobalVariables.SEARCH_WEBSITE) //Replace The Link Here
+        binding.swipeToRefresh.setOnRefreshListener {
+            binding.activityMainWebview.loadUrl(GlobalVariables.SEARCH_WEBSITE)
+            binding.swipeToRefresh.isRefreshing = false
+        }//Replace The Link Here
+        binding.activityMainWebview.loadUrl(GlobalVariables.SEARCH_WEBSITE)
         loadApplovinSdk()
     }
 
@@ -132,6 +136,7 @@ class SearchFragment : Fragment() {
 
     private fun setProgress(newProgress: Int) {
         if (newProgress == 100) {
+            binding.swipeToRefresh.isEnabled = false
             binding.progress.visibility = View.GONE
         } else {
             binding.progress.progress = newProgress
