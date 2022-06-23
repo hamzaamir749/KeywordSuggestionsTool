@@ -33,6 +33,8 @@ class SplashScreenActivity : AppCompatActivity() {
 
             Log.e("TESTING", "initViews: $token")
         })
+
+
         CoroutineScope(Dispatchers.Main).launch {
             delay(2000)
             openActivity(MainActivity::class.java)

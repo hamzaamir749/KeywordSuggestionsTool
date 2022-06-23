@@ -5,6 +5,7 @@
       <map>
         <entry key="app/src/main/res/drawable/ic_copy.xml" value="0.1305" />
         <entry key="app/src/main/res/drawable/progress_bg.xml" value="0.1305" />
+        <entry key="app/src/main/res/layout/activity_dynamic_linking.xml" value="0.17135416666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.17135416666666667" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.25" />
         <entry key="app/src/main/res/layout/bulk_keyword_data.xml" value="0.17135416666666667" />

@@ -10,7 +10,6 @@ import com.akstudios.KSTWV.repository.KeywordBulkRepository
 import com.akstudios.KSTWV.utils.LoadingDialog
 import com.akstudios.KSTWV.utils.getBaseUrl
 import com.google.gson.GsonBuilder
-import com.readystatesoftware.chuck.ChuckInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -35,7 +34,6 @@ object AppModule {
     @Singleton
     @Provides
     fun provideOkHttpClient(
-        chuckInterceptor: ChuckInterceptor
     ) =
         if (BuildConfig.DEBUG) {
             val loggingInterceptor = HttpLoggingInterceptor()
@@ -48,7 +46,7 @@ object AppModule {
             } else {
                 OkHttpClient.Builder()
                     .addInterceptor(loggingInterceptor)
-                    .addInterceptor(chuckInterceptor)
+
                     .connectTimeout(240, TimeUnit.SECONDS)
                     .readTimeout(240, TimeUnit.SECONDS)
                     .build()
@@ -76,11 +74,6 @@ object AppModule {
     @Singleton
     fun provideApiService(retrofit: Retrofit): ApiService = retrofit.create(ApiService::class.java)
 
-
-    @Provides
-    @Singleton
-    fun provideChuckInterceptor(@ApplicationContext context: Context): ChuckInterceptor =
-        ChuckInterceptor(context)
 
     @Provides
     @Singleton
